@@ -3,18 +3,17 @@ import WeatherIcon from "./WeatherIcon";
 import "./WeatherForecast.css";
 import axios from "axios";
 
-
 export default function WeatherForecast(props){
     let [loaded, setLoaded] = useState(false);
     let [forecast, setForecast] = useState(null);
+
     function displayTemperature(response) {
-        setForecast(response.data.daily)
+        setForecast(response.data)
         setLoaded(true);
       }
       
-  
-    if (loaded){
-    
+   if (loaded){
+    console.log(forecast);
         return(
      <div className ="WeatherForecast">
         <div className="row">
@@ -22,7 +21,7 @@ export default function WeatherForecast(props){
                 < div className="WeatherForecast-day">Tou</div>
                 <WeatherIcon code="clear-sky-day" size={32} />
                 < div className="WeatherForecast-temperatures">
-                    <span className="WeatherForecast-temperature-max">19°</span>
+                    <span className="WeatherForecast-temperature-max">{forecast.temperature.maximum}°</span>
                     <span className="WeatherForecast-temperature-min">10°</span>
                 </div>
             </div>
